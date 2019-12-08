@@ -36,6 +36,7 @@ $url = Url::fromString('https://spatie.be/opensource?utm_source=github&utm_campa
 
 echo $url->getQuery(); // 'utm_source=github&utm_campaign=packages'
 echo $url->getQueryParameter('utm_source'); // 'github'
+echo $url->withQueryParameter('utm_source', 'packagist'); // 'https://spatie.be/opensource?utm_campaign=packages&utm_source=packagist'
 echo $url->withoutQueryParameter('utm_campaign'); // 'https://spatie.be/opensource?utm_source=github'
 ```
 
@@ -46,6 +47,14 @@ $url = Url::fromString('https://spatie.be/opensource/laravel');
 
 echo $url->getSegment(1); // 'opensource'
 echo $url->getSegment(2); // 'laravel'
+```
+
+Use relative urls:
+
+```php
+$url = Url::fromString('/opensource');
+
+echo $url->withQueryParameter('utm_source', 'github'); // '/opensource?utm_source=github'
 ```
 
 Implements PSR-7's `UriInterface` interface:
